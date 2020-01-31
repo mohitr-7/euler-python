@@ -5,14 +5,24 @@ first 10 terms will be:
 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 
 By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the \
-even-valued terms."""
+even-valued terms.
+"""
 
 print(problem)
 
 # F(n) = nth Fibonacci number = F(n - 1) + F(n - 2), with F(0) = 0, F(1) = 1, F(2) = 1, F(3) = 2.
 # The even-valued terms will be F(3k) for all integer k.
 
-# F(3k + 3) = F(3k + 2) + F(3k + 1)
-#          = F(3k) + 2F(3k + 1)
-#          = 3F(3k) + 2F(3k - 1)
-#          = 3F(3k) + 2F(3k - 2) + 2F(3k - 3)
+f_k = 0
+f_k_plus_1 = 1
+f_k_plus_2 = 1
+
+total = 0
+
+while f_k < 4000000:
+    total += f_k
+    f_k = f_k_plus_1 + f_k_plus_2
+    f_k_plus_1 = f_k_plus_2 + f_k
+    f_k_plus_2 = f_k + f_k_plus_1
+
+print(total)
